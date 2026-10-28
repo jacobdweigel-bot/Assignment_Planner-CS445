@@ -1,6 +1,6 @@
 # Assignment Planner
 
-**Author:** [Your full name]
+**Author:** Jacob Weigel
 
 **Course:** CS445
 
