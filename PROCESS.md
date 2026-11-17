@@ -1,27 +1,34 @@
-# Assignment Planner development process
+# Assignment Planner Process
 
-**Model:** Extreme Programming (XP), adapted for an individual CS445 project.
+I'm using Extreme Programming (XP) for Assignment Planner. The main features already work, so my next step is to check how they work together and fix any problems I find. XP fits this because I can work on one small task, test it, and then decide what needs attention next.
 
 **Repository:** https://github.com/jacobdweigel-bot/Assignment_Planner-CS445
 
 **Task board:** https://github.com/users/jacobdweigel-bot/projects/1
 
-## Working cycle
+## How I'll work
 
-Choose a small task from the prioritized backlog, write or update its acceptance check, make the change, run the relevant tests, and try the result in the browser. Review priorities weekly and keep one task in progress at a time. An XP iteration is one week; there are no Scrum roles or required Scrum sprint artifacts.
+I'll plan my work a week at a time and start with the highest-priority task. Before changing anything, I'll decide what needs to work for that task to be finished. Then I'll make the change, run the relevant tests, and try it in the browser. I'll review what's finished at the end of the week and choose what to work on next.
 
-The board uses Todo (the backlog), In Progress, and Done. P1 is the highest priority. Move a task to In Progress when work starts. Move it to Done only after its acceptance check passes, relevant automated tests pass, and any changes are recorded in Git. A working implementation alone does not finish a browser acceptance task.
+My board has Todo, In Progress, and Done columns. Todo is my backlog, with P1 as the highest priority. I'll keep one task in progress at a time and move it to Done after I've checked the result, passed the relevant tests, and committed any changes.
 
-## Initial prioritized backlog
+## Backlog
 
-1. **P1 - Verify saved coursework survives a server restart.** Add and edit coursework using an isolated database, restart the server, and confirm that course details, assignment notes, due dates, and completion are preserved.
-2. **P2 - Check overdue and seven-day date boundaries.** Confirm yesterday is overdue, today is not overdue, today through six days ahead is upcoming, seven days ahead is excluded, and completed work never counts as overdue.
-3. **P3 - Check keyboard navigation and dialog focus.** Add and edit coursework without a mouse; confirm labeled controls, visible focus, Escape behavior, and focus returning after dialogs close.
-4. **P4 - Check the planner at phone and desktop widths.** Confirm assignment forms, course controls, and the workload panel are usable at about 390px and at desktop width without horizontal overflow.
-5. **P5 - Check combined filters and completion totals.** Combine course, status, and search filters; complete and reopen an assignment; confirm global totals and course progress remain correct.
+1. **P1 - Verify saved coursework survives a server restart.** Use a separate test database, add and edit coursework, and restart the server. Check that the details and completion status are still there.
+2. **P2 - Check overdue and seven-day date boundaries.** Check assignments due yesterday, today, six days ahead, and seven days ahead. Completed assignments should never show as overdue.
+3. **P3 - Check keyboard navigation and dialog focus.** Add and edit coursework without a mouse. Check that I can see which control is selected, close dialogs with Escape, and return to the right control afterward.
+4. **P4 - Check the planner at phone and desktop widths.** Check the forms, course controls, and workload chart at desktop width and about 390 pixels wide. Nothing should require scrolling sideways.
+5. **P5 - Check combined filters and completion totals.** Use course, status, and search filters together. Complete and reopen an assignment, then check the dashboard totals and course progress.
 
-## XP practices and solo limitations
+## Testing
 
-Use small changes, simple design, frequent integration, refactoring, and automated regression tests. For new logic defects, first reproduce the failure with a test when practical. Run `python -m unittest discover -s tests -v` and `node --test tests/model.test.mjs` before marking affected work complete.
+I'll keep changes small and clean up code as I work. When I find a logic bug, I'll add a test that reproduces it when possible, then fix it and run the tests again.
 
-Pair programming and collective ownership are unavailable in a one-person project. A separate self-review is a practical substitute for some review work, but does not provide an independent second developer. I am a student user of the planner; that helps with feedback but does not replace feedback from other students. Browser acceptance testing remains separate from the automated suites.
+The test commands are:
+
+```powershell
+python -m unittest discover -s tests -v
+node --test tests/model.test.mjs
+```
+
+I'll also check the app in the browser, since passing tests won't tell me whether a form is easy to use or fits on a phone screen.
